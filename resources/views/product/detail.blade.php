@@ -9,11 +9,12 @@
                         <div class="small mb-1">SKU: BST-498</div>
                         <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
                         <div class="fs-5 mb-5">
-                            <span>{{$product->price}}</span>
+                            <span>Rp. {{number_format($product->price, 0, '.', ',');}}/Hari</span>
                         </div>
                         <p class="lead">{{$product->ket}}</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <label for="">Hari</label>
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                 @if($product->kategori == 'Sewa')
