@@ -14,8 +14,6 @@
         </div>
     </div>
 </header>
-
-
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -24,14 +22,14 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{$product->image}}" alt="..." />
+                            <img class="card-img-top" src="{{ asset($product->gambar) }}" alt="{{ $product->nama }}">
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">{{$product->name}}</h5>
+                                    <h5 class="fw-bolder">{{$product->nama}}</h5>
                                     <!-- Product price-->
-                                    Rp. {{number_format($product->price, 0, '.', ',');}}
+                                    Rp. {{number_format($product->harga, 0, '.', ',');}}
                                 </div>
                             </div>
                             <!-- Product actions-->

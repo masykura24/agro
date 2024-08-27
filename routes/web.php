@@ -23,7 +23,7 @@ use App\Models\Product;
 Route::get('/', function () {
     $products = Product::all();
     return view('welcome', compact('products'));
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     if(Auth::user()->hasROle('user')){
@@ -39,15 +39,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/product/{product}/detail', [ProductController::class, 'show'])->name('product.show');
+        Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+        Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+        Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('user.dashboard');
-    Route::get('/product/{product}/detail', [ProductController::class, 'show'])->name('product.show');
-}); 
+});
 
 Route::middleware(['auth', 'role:seller'])->group(function () {
     Route::get('/seller', [SellerController::class, 'index'])->name('seller.dashboard');
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/product/create', [ProductController::class, 'store'])->name('product.store');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

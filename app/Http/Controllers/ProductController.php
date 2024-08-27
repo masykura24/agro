@@ -12,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('welcome');
+        // return view('product.index');
     }
 
     /**
@@ -20,7 +21,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $page = [
+            'title' => 'Tambah Produk',
+            'button' => 'Tambah',
+            'method' => 'POST',
+            'action' => route('product.store')
+        ];
+        return view('product.form', compact('page'));
     }
 
     /**
@@ -28,7 +35,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Mengunggah gambar ke folder public/images/product
+        $imageName = time() . '.' . $request->gambar->extension();
+        $request->gambar->move(public_path('images/product'), $imageName);
+
+        Product::create([
+            'nama' => $request->nama,
+            'gambar' => 'images/product/' . $imageName,
+            'harga' => $request->harga,
+            'kategori' => $request->kategori,
+            'jumlah' => $request->jumlah,
+            'deskripsi' => $request->deskripsi
+        ]);
+
+        return redirect()->route('product.index');
     }
 
     /**
