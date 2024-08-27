@@ -10,10 +10,16 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'price',
-        'kategori',
-        'jumlah',
-        'ket',
+            'nama',
+            'gambar',
+            'harga',
+            'kategori',
+            'jumlah',
+            'deskripsi',
     ];
+
+        public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

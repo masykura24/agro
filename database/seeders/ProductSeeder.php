@@ -14,30 +14,12 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Product::create([
-        'image' => '/src/img.jpg',
-        'name' => 'Traktor',
-        'price' => '100000',
-        'kategori' => 'Sewa',
-        'jumlah' => '1',
-        'ket' => '',
-        ]);
-
-        Product::create([
-            'image' => '/src/img.jpg',
-            'name' => 'Penanaman',
-            'price' => '100000',
-            'kategori' => 'Jasa',
-            'jumlah' => '7',
-            'ket' => '',
-        ]);
-
-        Product::create([
-            'image' => '/src/img.jpg',
-            'name' => 'Mesin Pemanen',
-            'price' => '23000',
-            'kategori' => 'Sewa',
+            'nama' => 'Mesin Pemanen',
+            'gambar' => '/src/img.jpg',
+            'harga' => '23000',
+            'kategori' => 'sewa',
             'jumlah' => '1',
-            'ket' => '',
+            'deskripsi' => '',
         ]);
     }
 }
